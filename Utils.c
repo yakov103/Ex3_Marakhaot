@@ -7,6 +7,9 @@
 
 char * detectWord (){
     char *word= (char *) calloc(WORD,sizeof (char));
+    if (word== NULL){
+        printf("failed to allocate a memory " );
+    }
     scanf("%c", word);
     int i;
     for ( i = 1 ; i < WORD; i++){
@@ -25,6 +28,9 @@ char * detectWord (){
 
 char * detectText (){
     char *txt= (char *) calloc(TXT,sizeof (char));
+    if (txt== NULL){
+        printf("failed to allocate a memory " );
+    }
     scanf("%c", txt);
     int i;
     for ( i = 1 ; i < TXT; i++){
@@ -66,6 +72,10 @@ void gematriaFunc (char *txt , char *word){
     char *word_to_check;
     for (i = 0 ; i < lenText ; i++){
         word_to_check = (char*) calloc(WORD,sizeof (char));
+        if (word_to_check == NULL){
+            printf("failed to allocate a memory " );
+            return;
+        }
         j= i;
         sum = 0 ;
         while (txt[j] != '\0' && sum < word_gematria) {
