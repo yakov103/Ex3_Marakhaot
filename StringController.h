@@ -18,6 +18,7 @@ void gematriaFunc (char *text, char *word);
 void gematriaPrint (char *word , int start, int end);
 
 char * atbashCalc (char *word);
+char * wordReverse (char *word);
 int adbashFunc (char *text);
 
 

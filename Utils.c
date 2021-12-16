@@ -94,7 +94,27 @@ void gematriaFunc (char *txt , char *word){
         free(word_to_check);
     }
     word_to_check = NULL;
-
-
-
 }
+
+char * wordReverse (char *word){
+    char *reversedWord ;
+    int lenWord = strlen(word);
+    reversedWord = (char *) calloc(lenWord,sizeof (char));
+    if ( reversedWord == NULL){
+        printf("error allocating memory");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
