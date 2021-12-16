@@ -14,6 +14,7 @@ int main (){
     printf("%s \n",word);
     printf("%s \n",txt);
     gematriaFunc(txt,word);
+    printf("\n %s", wordReverse(word));
     free(word);
     free(txt);
     word= NULL;
