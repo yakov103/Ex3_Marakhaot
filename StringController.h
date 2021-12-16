@@ -14,12 +14,12 @@ char * detectWord ();//done
 char * detectText ();//done
 
 int gematriaCalc (char *word);//done
-void gematriaFunc (char *text, char *word);
-void gematriaPrint (char *word , int start, int end);
+void gematriaFunc (char *text, char *word);//done
 
-char * atbashCalc (char *word);
-char * wordReverse (char *word);
-int adbashFunc (char *text);
+
+char * atbashCalc (char *word);//done
+char * wordReverse (char *word);//done
+void adbashFunc (char *txt, char *word);
 
 
 

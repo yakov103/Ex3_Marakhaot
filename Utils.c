@@ -116,20 +116,78 @@ char * atbashCalc (char *word){
     int  wordLen = strlen(word), i;
     for ( int i = 0 ; i < wordLen ; i++){
         if ((word[i] >= 'a' && word[i] <= 'z') || (word[i] >= 'A' && word[i] <= 'Z')) {
-
-
+            if ( (word[i] >= 'a' && word[i] <= 'z') ){
+             atbashResult[i]= 'z'-word[i]+'a';
+            }
+            else{
+                atbashResult[i]= 'Z'-word[i]+'A';
+            }
         }
-
-
     }
 
 
-
+return atbashResult;
 
 }
 
-int adbashFunc (char *text){
+void adbashFunc (char *txt, char *word){
+    char *word_to_check;
+    char *atbash_word = atbashCalc(word);
+    char *revesed_atbash = wordReverse(atbash_word);
+    printf("Atbash Sequences: ");
+    int lenText = strlen(txt),atbashLen = strlen(atbash_word),  i, j, sum, first_word = 0 , send_to_print = 0;
+    for ( i = 0; i < lenText ; i++){
 
+        if ( txt[i] == atbash_word[0] ||  txt[i] == revesed_atbash[0]){
+            word_to_check = (char *) calloc(WORD, sizeof(char));
+            j=0;
+            if (txt[i] == atbash_word[0]) {
+                while (  txt[i + j] != '\0' && atbash_word[j] != '\0'){
+                    if (txt[i + j] == atbash_word[j]) {
+                        j++;
+                        if (j == atbashLen) {
+                            send_to_print = 1;
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            else if (txt[i] == revesed_atbash[0] ) {
+                while (txt[i + j] != '\0' && atbash_word[j] != '\0') {
+                    if (txt[i + j] == revesed_atbash[j]) {
+                        j++;
+                        if (j == atbashLen) {
+                            send_to_print = 1;
+
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            if (send_to_print){
+                if (first_word) {
+                    printf("~");
+                } else {
+                    first_word = 1;
+                }
+                memcpy(word_to_check, &txt[i], j);
+                printf("%s", word_to_check);
+                send_to_print = 0;
+            }
+            free(word_to_check);
+            word_to_check = NULL ;
+        }
+
+
+        else {
+            continue;
+        }
+
+    }
 }
 
 

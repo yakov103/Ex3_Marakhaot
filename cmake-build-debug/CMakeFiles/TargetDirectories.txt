@@ -1,3 +1,0 @@
-C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/cmake-build-debug/CMakeFiles/Ex3_Marakhaot.dir
-C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/cmake-build-debug/CMakeFiles/rebuild_cache.dir
