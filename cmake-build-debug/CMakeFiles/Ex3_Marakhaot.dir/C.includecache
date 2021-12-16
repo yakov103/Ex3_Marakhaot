@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/yakovkhodorkovski/CLionProjects/Ex3_Marakhaot/StringController.h
+C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/StringController.h
 stdio.h
 -
 stdlib.h
@@ -18,23 +18,9 @@ limits.h
 ctype.h
 -
 
-/Users/yakovkhodorkovski/CLionProjects/Ex3_Marakhaot/Utils.c
+C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/main.c
 StringController.h
-/Users/yakovkhodorkovski/CLionProjects/Ex3_Marakhaot/StringController.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-limits.h
--
-ctype.h
--
-
-/Users/yakovkhodorkovski/CLionProjects/Ex3_Marakhaot/main.c
-StringController.h
-/Users/yakovkhodorkovski/CLionProjects/Ex3_Marakhaot/StringController.h
+C:/Users/dolev/Desktop/year2/Ex3_Marakhaot/StringController.h
 stdio.h
 -
 stdlib.h
