@@ -125,7 +125,6 @@ char * atbashCalc (char *word){
         }
     }
 
-
 return atbashResult;
 
 }
@@ -188,6 +187,10 @@ void adbashFunc (char *txt, char *word){
         }
 
     }
+    free(atbash_word);
+    free(revesed_atbash);
+    atbash_word = NULL;
+    revesed_atbash = NULL;
 }
 
 
