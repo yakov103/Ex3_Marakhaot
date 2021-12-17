@@ -210,6 +210,93 @@ return reversedWord;
 
 
 
+void anagram (char *txt ,char *word){
+    printf("Anagram Sequences: ");
+    int *map , *tempMap, txtlen = strlen(txt) , wordlen = strlen(word);
+    char * word_to_print ;
+    word_to_print = (char * ) calloc(WORD ,sizeof (char));
+    if ( word_to_print == NULL ){
+        printf("failed allocate memory ! ");
+        return ;
+    }
+    map = (int * ) calloc(ASCII_MAX, sizeof (int));
+    if ( map == NULL){
+        printf("cannot alocate memory ! ");
+        return ;
+    }
+    int i ;
+    for (i = 0 ; i < wordlen; i++ ){
+        map[word[i]]++;
+    }
+    tempMap = (int *) calloc(ASCII_MAX,sizeof (int));
+    if ( tempMap == NULL){
+        printf("cannot alocate memory ! ");
+        return ;
+    }
+    memcpy(tempMap,map,ASCII_MAX*sizeof (int));
+    int flag= 0 , first_word = 0 ;
+    int j = 0 , spaceCnt = 0, k;
+    for ( i = 0 ; i < txtlen ;  i++ ){
+        if ( map[txt[i]] > 0){// && txtlen-i > wordlen
+            j = i;
+            spaceCnt= 0 ;
+            while ( (map[txt[j]] > 0 && j-i < wordlen + spaceCnt) || txt[j] == ' ' ) {
+                if (txt[j] == ' '){
+                    spaceCnt++;
+                }
+                if (!flag) {
+                    flag = 1;
+                }
+                tempMap[txt[j]]--;
+                j++;
+
+            }
+        }
+        if (flag){
+            for ( k = 0 ; k < wordlen ; k++ ){
+             if ( tempMap[word[k]] > 0 ) {
+                 flag= 0 ;
+                 memcpy(tempMap,map,ASCII_MAX*sizeof (int));
+                 spaceCnt =0 ;
+                 break;
+             }
+            }
+            if (flag) {
+                memcpy(word_to_print, &txt[i],j-i+spaceCnt );
+                if (first_word){
+                    printf("~");
+                }
+                else {
+                    first_word = 1;
+                }
+                printf("%s",word_to_print);
+                flag =0;
+                memcpy(tempMap,map,ASCII_MAX*sizeof (int));
+                memset(word_to_print,'\0',WORD);
+                spaceCnt =0 ;
+
+            }
+
+
+        }
+
+
+    }
+
+    free(map);
+    free(tempMap);
+    free(word_to_print);
+
+    map = NULL;
+    tempMap = NULL;
+    word_to_print = NULL;
+
+
+
+}
+
+
+
 
 
 

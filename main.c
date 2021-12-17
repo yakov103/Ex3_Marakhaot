@@ -11,11 +11,13 @@ int main (){
     char *txt;
     word= detectWord();
     txt =detectText();
-    printf("%s \n",word);
-    printf("%s \n",txt);
     gematriaFunc(txt,word);
     printf("\n");
     adbashFunc(txt,word);
+    printf("\n");
+    anagram(txt, word);
+
+
     free(word);
     free(txt);
     word= NULL;

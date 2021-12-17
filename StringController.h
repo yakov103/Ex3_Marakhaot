@@ -6,6 +6,7 @@
 #include <ctype.h>
 #define TXT 1024
 #define WORD 30
+#define ASCII_MAX 256
 
 #ifndef EX3_STRINGCONTROLLER_H
 #define EX3_STRINGCONTROLLER_H
@@ -20,6 +21,8 @@ void gematriaFunc (char *text, char *word);//done
 char * atbashCalc (char *word);//done
 char * wordReverse (char *word);//done
 void adbashFunc (char *txt, char *word);
+
+void anagram (char *txt ,char *word);
 
 
 
