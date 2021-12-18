@@ -1,21 +1,13 @@
-CC := gcc
-CFLAGS := -Wall -g
+all: stringProg
 
-objs := main.o Utils.o
-target := stringProg
+stringProg: main.o Utils.o
+	gcc -Wall -g -o stringProg main.o Utils.o
 
-all: $(target)
+main.o: main.c StringController.h
+	gcc -Wall -g -c main.c
 
-deps := $(patsubst %.o,%.d,$(objs))
--include $(deps)
-DEPFLAGS = -MMD -MF $(@:.o=.d)
-
-stringProg: $(objs)
-	$(CC) $(CFLAGS) -o $@ $^
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< $(DEPFLAGS)
+Utils.o: Utils.c StringController.h
+	gcc -Wall -g -c Utils.c
 
 clean:
-	rm -f $(target) $(objs) $(deps)
-
+	rm -f *.o *.a stringProg
