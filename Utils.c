@@ -134,19 +134,24 @@ void adbashFunc (char *txt, char *word){
     char *atbash_word = atbashCalc(word);
     char *revesed_atbash = wordReverse(atbash_word);
     printf("Atbash Sequences: ");
-    int lenText = strlen(txt),atbashLen = strlen(atbash_word),  i, j, first_word = 0 , send_to_print = 0;
+    int lenText = strlen(txt),atbashLen = strlen(atbash_word),  i, j, first_word = 0 , send_to_print = 0, cntSpace = 0 ;
     for ( i = 0; i < lenText ; i++){
 
         if ( txt[i] == atbash_word[0] ||  txt[i] == revesed_atbash[0]){
             word_to_check = (char *) calloc(WORD, sizeof(char));
             j=0;
+            cntSpace =0;
             if (txt[i] == atbash_word[0]) {
-                while (  txt[i + j] != '\0' && atbash_word[j] != '\0'){
-                    if (txt[i + j] == atbash_word[j]) {
+                while (  txt[i + j+ cntSpace] != '\0' && atbash_word[j] != '\0'){
+                    if (txt[i + j+ cntSpace] == atbash_word[j] ) {
                         j++;
                         if (j == atbashLen) {
                             send_to_print = 1;
                         }
+                    }
+                    else if (txt[i + j] == ' '){
+                        cntSpace++;
+                        continue;
                     }
                     else {
                         break;
@@ -173,7 +178,7 @@ void adbashFunc (char *txt, char *word){
                 } else {
                     first_word = 1;
                 }
-                memcpy(word_to_check, &txt[i], j);
+                memcpy(word_to_check, &txt[i], j+cntSpace);
                 printf("%s", word_to_check);
                 send_to_print = 0;
             }
