@@ -242,7 +242,7 @@ void anagram (char *txt ,char *word){
     for ( i = 0 ; i < txtlen ;  i++ ){
         if ( map[(int)txt[i]] > 0) {// && txtlen-i > wordlen
             j = i;
-            spaceCnt = 0;
+            spaceCnt = 0 , flag3=0;
             while ((map[(int) txt[j]] > 0 && j - i < wordlen + spaceCnt) || (txt[j] == ' ')) {
                 if (txt[j] == ' ') {
                     flag3 =1 ;
