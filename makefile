@@ -1,16 +1,21 @@
-all: stringProg
+CC := gcc
+CFLAGS := -Wall -g
 
-stringProg: main.o libUtils.a
-	gcc -Wall -g -o stringProg main.o libUtils.a
+objs := main.o Utils.o
+target := stringProg
 
-main.o: main.c StringController.h
-	gcc -Wall -g -c main.c
+all: $(target)
 
-Utils.o: Utils.c StringController.h
-	gcc -Wall -g -c Utils.c
+deps := $(patsubst %.o,%.d,$(objs))
+-include $(deps)
+DEPFLAGS = -MMD -MF $(@:.o=.d)
 
-libUtils.a: Utils.c StringController.h
-	ar rcs libUtils.a Utils.o # list here all the files i want to become library
+stringProg: $(objs)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< $(DEPFLAGS)
 
 clean:
-	rm -fr *.o *.a *.so stringProg
+	rm -f $(target) $(objs) $(deps)
+
