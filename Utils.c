@@ -238,49 +238,66 @@ void anagram (char *txt ,char *word){
     }
     memcpy(tempMap,map,ASCII_MAX*sizeof (int));
     int flag= 0 , first_word = 0 ;
-    int j = 0 , spaceCnt = 0, k;
+    int j = 0 , spaceCnt = 0, k, flag2 =1 , flag3 = 0 ;
     for ( i = 0 ; i < txtlen ;  i++ ){
-        if ( map[(int)txt[i]] > 0){// && txtlen-i > wordlen
+        if ( map[(int)txt[i]] > 0) {// && txtlen-i > wordlen
             j = i;
-            spaceCnt= 0 ;
-            while ( (map[(int)txt[j]] > 0 && j-i < wordlen + spaceCnt) || txt[j] == ' ' ) {
-                if (txt[j] == ' '){
-                    spaceCnt++;
+            spaceCnt = 0;
+            while ((map[(int) txt[j]] > 0 && j - i < wordlen + spaceCnt) || (txt[j] == ' ')) {
+                if (txt[j] == ' ') {
+                    flag3 =1 ;
+                    for (k = 0; k < wordlen; k++) {
+                        if (tempMap[(int) word[k]] != 0) {
+                            flag2 = 1;
+                            spaceCnt++;
+                            break;
+                        } else {
+                            flag2 = 0;
+                        }
+                    }
                 }
                 if (!flag) {
                     flag = 1;
                 }
-                tempMap[(int)txt[j]]--;
+                if (flag2) {
+                    if (txt[j] != ' ') {
+                        tempMap[(int) txt[j]]--;
+                    }
+
+                }
                 j++;
 
             }
-        }
-        if (flag){
-            for ( k = 0 ; k < wordlen ; k++ ){
-             if ( tempMap[(int)word[k]] > 0 ) {
-                 flag= 0 ;
-                 memcpy(tempMap,map,ASCII_MAX*sizeof (int));
-                 spaceCnt =0 ;
-                 break;
-             }
-            }
+
             if (flag) {
-                memcpy(word_to_print, &txt[i],j-i+spaceCnt );
-                if (first_word){
-                    printf("~");
+                for (k = 0; k < wordlen; k++) {
+                    if (tempMap[(int) word[k]] > 0) {
+                        flag = 0;
+                        memcpy(tempMap, map, ASCII_MAX * sizeof(int));
+                        spaceCnt = 0;
+                        break;
+                    }
                 }
-                else {
-                    first_word = 1;
+                if (flag) {
+                    if (flag3){
+                        j--;
+                    }
+                    memcpy(word_to_print, &txt[i], j - i);
+                    if (first_word) {
+                        printf("~");
+                    } else {
+                        first_word = 1;
+                    }
+                    printf("%s", word_to_print);
+                    flag = 0;
+                    memcpy(tempMap, map, ASCII_MAX * sizeof(int));
+                    memset(word_to_print, '\0', WORD);
+                    spaceCnt = 0;
+
                 }
-                printf("%s",word_to_print);
-                flag =0;
-                memcpy(tempMap,map,ASCII_MAX*sizeof (int));
-                memset(word_to_print,'\0',WORD);
-                spaceCnt =0 ;
+
 
             }
-
-
         }
 
 
