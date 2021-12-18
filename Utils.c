@@ -113,7 +113,7 @@ char * atbashCalc (char *word){
         printf("failed to allocate a memory ");
         return NULL;
     }
-    int  wordLen = strlen(word), i;
+    int  wordLen = strlen(word);
     for ( int i = 0 ; i < wordLen ; i++){
         if ((word[i] >= 'a' && word[i] <= 'z') || (word[i] >= 'A' && word[i] <= 'Z')) {
             if ( (word[i] >= 'a' && word[i] <= 'z') ){
@@ -134,7 +134,7 @@ void adbashFunc (char *txt, char *word){
     char *atbash_word = atbashCalc(word);
     char *revesed_atbash = wordReverse(atbash_word);
     printf("Atbash Sequences: ");
-    int lenText = strlen(txt),atbashLen = strlen(atbash_word),  i, j, sum, first_word = 0 , send_to_print = 0;
+    int lenText = strlen(txt),atbashLen = strlen(atbash_word),  i, j, first_word = 0 , send_to_print = 0;
     for ( i = 0; i < lenText ; i++){
 
         if ( txt[i] == atbash_word[0] ||  txt[i] == revesed_atbash[0]){
@@ -229,7 +229,7 @@ void anagram (char *txt ,char *word){
     }
     int i ;
     for (i = 0 ; i < wordlen; i++ ){
-        map[word[i]]++;
+        map[(int)word[i]]++;
     }
     tempMap = (int *) calloc(ASCII_MAX,sizeof (int));
     if ( tempMap == NULL){
@@ -240,24 +240,24 @@ void anagram (char *txt ,char *word){
     int flag= 0 , first_word = 0 ;
     int j = 0 , spaceCnt = 0, k;
     for ( i = 0 ; i < txtlen ;  i++ ){
-        if ( map[txt[i]] > 0){// && txtlen-i > wordlen
+        if ( map[(int)txt[i]] > 0){// && txtlen-i > wordlen
             j = i;
             spaceCnt= 0 ;
-            while ( (map[txt[j]] > 0 && j-i < wordlen + spaceCnt) || txt[j] == ' ' ) {
+            while ( (map[(int)txt[j]] > 0 && j-i < wordlen + spaceCnt) || txt[j] == ' ' ) {
                 if (txt[j] == ' '){
                     spaceCnt++;
                 }
                 if (!flag) {
                     flag = 1;
                 }
-                tempMap[txt[j]]--;
+                tempMap[(int)txt[j]]--;
                 j++;
 
             }
         }
         if (flag){
             for ( k = 0 ; k < wordlen ; k++ ){
-             if ( tempMap[word[k]] > 0 ) {
+             if ( tempMap[(int)word[k]] > 0 ) {
                  flag= 0 ;
                  memcpy(tempMap,map,ASCII_MAX*sizeof (int));
                  spaceCnt =0 ;
